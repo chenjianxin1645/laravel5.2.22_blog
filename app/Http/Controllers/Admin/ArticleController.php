@@ -164,6 +164,7 @@ class ArticleController extends Controller
         //dd($request->all());
         //进行文件一般上传的操作
         $file = $request->file('Filedata');
+//        return $file;
         $upload_dir = $request->get('upload_dir');
 //        dd($file);
         //验证文件是否有效

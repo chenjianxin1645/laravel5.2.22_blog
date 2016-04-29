@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Admin/Auth
+ * Admin/Auth 后台管理
  * */
 Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'web'],function(){
     Route::controller('auth', 'Auth\AuthController');
@@ -15,7 +15,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['admin']],fu
     //文章首页信息
     Route::get('index', 'IndexController@index');
     Route::get('info', 'IndexController@info');
-//    Route::get('server1', 'IndexController@server');
+    Route::get('server1', 'IndexController@server');
 
     //文章分类管理
     Route::controller('category', 'CategoryController');
