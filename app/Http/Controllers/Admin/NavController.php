@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 
-class NavController extends Controller
+class NavController extends CommonController
 {
     /*
      * 自定义导航首页

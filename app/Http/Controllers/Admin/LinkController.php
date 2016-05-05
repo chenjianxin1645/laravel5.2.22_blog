@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 
-class LinkController extends Controller
+class LinkController extends CommonController
 {
     /*
      * 友情链接首页

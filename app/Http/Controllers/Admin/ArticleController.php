@@ -11,7 +11,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 
-class ArticleController extends Controller
+class ArticleController extends CommonController
 {
     /*
      * 文章管理列表首页

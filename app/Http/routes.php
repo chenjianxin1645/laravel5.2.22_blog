@@ -1,7 +1,24 @@
 <?php
 
 /*
- * Admin/Auth 后台管理
+ *  front router
+ * */
+Route::group(['namespace'=>'PC','middleware'=>'web'],function(){
+    //front index
+    Route::get('/','IndexController@index');
+    //所有文章列表
+    Route::get('lists','IndexController@lists');
+    //分类列表
+    Route::get('cates/{id}','IndexController@cates');
+    //文章详情
+    Route::get('art/{id}','IndexController@art');
+
+});
+
+
+
+/*
+ * admin auth router
  * */
 Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'web'],function(){
     Route::controller('auth', 'Auth\AuthController');
@@ -13,9 +30,12 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'web'],functi
  * */
 Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['admin']],function(){
     //文章首页信息
+    Route::get('',function(){
+        return view('admin.index');
+    });
     Route::get('index', 'IndexController@index');
     Route::get('info', 'IndexController@info');
-    Route::get('server1', 'IndexController@server');
+    Route::get('server', 'IndexController@server');
 
     //文章分类管理
     Route::controller('category', 'CategoryController');

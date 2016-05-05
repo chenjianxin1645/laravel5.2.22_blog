@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 
-class ConfigController extends Controller
+class ConfigController extends CommonController
 {
     /*
     * 网站配置首页
@@ -107,6 +107,8 @@ class ConfigController extends Controller
         }else{
             $res = Config::create($data);
             if($res){
+                //更新内容时 同步到config文件中
+                $this->putConfig();
                 return redirect('admin/config/index');
             }else{
                 return back()->withErrors("添加网站配置失败")->withInput();
@@ -157,6 +159,8 @@ class ConfigController extends Controller
             }*/
             $res = Config::where('id',$request->get('id'))->update($data);
             if($res){
+                //更新内容时 同步到config文件中
+                $this->putConfig();
                 return redirect('admin/config/index');
             }else{
                 return back()->withErrors("添加网站配置失败");
@@ -172,6 +176,8 @@ class ConfigController extends Controller
 //        dd($cate_id) ;
         $res = config::destroy($config_id);
         if($res){
+            //更新内容时 同步到config文件中
+            $this->putConfig();
             $data= [
                 'status'=>0,
                 'msg'=>'删除网站配置成功'
@@ -211,9 +217,32 @@ class ConfigController extends Controller
                 if(!$res)
                     return back()->withErrors("设置网站配置内容失败");
             }
+            //更新内容时 同步到config文件中
+            $this->putConfig();
             //更新成功
             return redirect('admin/config/index')->withErrors("设置网站配置内容成功");;
         }
+    }
+
+    /*
+     * 将网站配置项内容写入到config目录中 以便随时读取
+     * */
+    public function putConfig(){
+        $configs = Config::all();
+//        dd($configs);
+        if(count($configs)>0){
+//            'debug' => env('APP_DEBUG', false),
+            $data1 = '';
+            foreach ($configs as $config){
+                $data1.= "'".$config->name."' => '". $config->content ."' ,";
+            }
+//            dd($data1);
+            $data = "<?php return [". $data1. "];";
+            file_put_contents(config_path('web.php'),$data);
+//            dd(config('web.web_title'));
+        }
+        return ;
+
     }
 
 

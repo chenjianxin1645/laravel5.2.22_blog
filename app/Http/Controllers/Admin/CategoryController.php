@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 
-class CategoryController extends Controller
+class CategoryController extends CommonController
 {
     /*
      * 分类列表首页

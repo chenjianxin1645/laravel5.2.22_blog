@@ -44,4 +44,11 @@ class Category extends Model
         return $arr;
     }
 
+    /*
+     * 建立与分类的一对多的关系
+     * */
+    public function HasManyArticles(){
+        return $this->hasMany('App\Http\Model\Articles','cate_id','id');
+    }
+
 }

@@ -1,0 +1,1 @@
+<?php return ['web_staus' => '1' ,'web_title' => '我的博客-提供好的文章' ,'web_keywords' => '做自己的blog，分享最好的文章' ,'web_description' => '这是一个提供学习交流的个人博客网站，在这里你可以阅览各种学习的文章，欢迎大家前来学习与交流。' ,'web_author' => 'zs-cjx' ,'web_url' => 'http://laravel52_blog.com/' ,'web_page' => '5' ,'web_count' => '' ,];
